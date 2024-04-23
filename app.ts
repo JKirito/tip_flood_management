@@ -1,6 +1,7 @@
 // Import express module
 import express from 'express';
-import config from './src/config';
+import config from 'config';
+import UserRouter from '@routes/user.routes';
 
 // Create an instance of express
 const app = express();
@@ -14,5 +15,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
+
+app.use('/users', UserRouter);
 
 export default app;
