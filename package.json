@@ -1,8 +1,13 @@
 {
   "name": "flood_backend",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "./index.ts",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "ts-node -r tsconfig-paths/register index.ts",
+    "build": "tsc"
+  },
   "dependencies": {
     "@typegoose/typegoose": "^12.4.0",
     "config": "^3.3.11",
@@ -15,6 +20,7 @@
     "@types/node": "^20.12.7",
     "dotenv": "^16.4.5",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.5"
   },
   "scripts": {

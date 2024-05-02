@@ -1,6 +1,6 @@
-import app from "./app";
-import mongoose from "mongoose";
-import config from "./src/config";
+import app from './app';
+import mongoose from 'mongoose';
+import config from '@config/config';
 
 // This is where the application server started
 // Database connection
