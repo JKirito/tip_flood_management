@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@typegoose/typegoose": "^12.4.0",
+    "config": "^3.3.11",
     "express": "^4.19.2",
     "mongoose": "^8.3.2"
   },
@@ -21,5 +22,8 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "start": "ts-node app.ts"
   }
 }

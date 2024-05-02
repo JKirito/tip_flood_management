@@ -2,14 +2,15 @@ import app from './app';
 import mongoose from 'mongoose';
 import config from '@config/config';
 
+// This is where the application server started
 // Database connection
 mongoose
   .connect(config.dbUri)
   .then(() => {
-    console.log('Database connected successfully.');
+    console.log("Database connected successfully.");
   })
   .catch((err) => {
-    console.error('Database connection error:', err);
+    console.error("Database connection error:", err);
   });
 
 // Start the server
