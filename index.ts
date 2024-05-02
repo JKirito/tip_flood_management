@@ -1,6 +1,6 @@
 import app from './app';
 import mongoose from 'mongoose';
-import config from './src/config';
+import config from '@config/config';
 
 // Database connection
 mongoose

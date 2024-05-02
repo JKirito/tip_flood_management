@@ -1,6 +1,6 @@
 // Import express module
 import express from 'express';
-import config from 'config';
+import config from '@config/config';
 import UserRouter from '@routes/user.routes';
 
 // Create an instance of express
