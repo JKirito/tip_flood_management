@@ -1,39 +1,40 @@
-import { prop, getModelForClass } from "@typegoose/typegoose";
+import { getModelForClass, prop } from '@typegoose/typegoose';
 
 class User {
   @prop({ required: true })
-  public name: string;
+  public name!: string;
 
   @prop({ required: true })
-  public age: number;
+  public age!: number;
 
   @prop({ required: true })
-  public email: string;
+  public email!: string;
 
   @prop({ required: true })
-  public phone: string;
+  public phone!: string;
 
   @prop({ required: true })
-  public street: string;
+  public street!: string;
 
   @prop({ required: true })
-  public city: string;
+  public city!: string;
 
   @prop({ required: true })
-  public state: string;
+  public state!: string;
 
   @prop({ required: true })
-  public zip: string;
+  public zip!: string;
 
   @prop({ required: true })
-  public country: string;
+  public country!: string;
 
   @prop({ default: false })
-  public isAdmin: boolean;
+  public isAdmin?: boolean;
 
   @prop({ default: false })
-  public isSubscriber: boolean;
+  public isSubscriber?: boolean;
 }
 
 const UserModel = getModelForClass(User);
-export { UserModel };
+
+export default UserModel;
