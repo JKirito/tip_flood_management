@@ -60,4 +60,4 @@ export const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-console.log('Hello from user controller');
+console.log("Hello from user controller");
