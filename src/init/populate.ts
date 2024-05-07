@@ -1,6 +1,6 @@
 import axios from 'axios'; // Or your HTTP client of choice
 import mongoose from 'mongoose';
-import UserModel, { UserType } from '@models/User';
+import UserModel, { UserType } from '@models/User.model';
 import config from '@config/config';
 
 // Function to generate dummy user data

@@ -2,6 +2,7 @@
 import express from 'express';
 import config from '@config/config';
 import UserRouter from '@routes/user.routes';
+import AlertRouter from '@routes/alert.routes';
 
 // This is the place where Express application set up
 // Create an instance of express
@@ -18,5 +19,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', UserRouter);
+app.use('/alerts', AlertRouter);
 
 export default app;

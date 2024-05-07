@@ -1,6 +1,6 @@
 //responsible for handling incoming HTTP requests and returning responses to the client
 import { Request, Response } from 'express';
-import UserModel, { UserType } from '@models/User';
+import UserModel, { UserType } from '@models/User.model';
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
