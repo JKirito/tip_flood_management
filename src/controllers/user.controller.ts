@@ -1,6 +1,6 @@
 //responsible for handling incoming HTTP requests and returning responses to the client
 import { Request, Response } from 'express';
-import UserModel from '@models/User';
+import UserModel, { UserType } from '@models/User';
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -11,9 +11,11 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
-export const getUserById = async (req: Request, res: Response) => {
+export const getUserByEmail = async (req: Request, res: Response) => {
   try {
-    const user = await UserModel.findById(req.params.id);
+    const user = await UserModel.findOne({
+      email: req.params.email,
+    });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -25,7 +27,7 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const newUser = new UserModel(req.body);
+    const newUser = new UserModel(req.body as UserType);
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
   } catch (error) {
@@ -35,9 +37,15 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const user = await UserModel.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const user = await UserModel.findOneAndUpdate(
+      {
+        email: req.params.email,
+      },
+      req.body,
+      {
+        new: true,
+      }
+    );
     if (!user) {
       res.status(404).send('User not found');
     } else {
@@ -50,7 +58,9 @@ export const updateUser = async (req: Request, res: Response) => {
 
 export const deleteUser = async (req: Request, res: Response) => {
   try {
-    const user = await UserModel.findByIdAndDelete(req.params.id);
+    const user = await UserModel.findOneAndDelete({
+      email: req.params.email,
+    });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -60,4 +70,4 @@ export const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-console.log("Hello from user controller");
+// console.log('Hello from user controller');

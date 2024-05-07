@@ -1,4 +1,4 @@
-import { getModelForClass, prop } from '@typegoose/typegoose';
+import { ReturnModelType, getModelForClass, prop } from '@typegoose/typegoose';
 
 class User {
   @prop({ required: true })
@@ -36,5 +36,7 @@ class User {
 }
 
 const UserModel = getModelForClass(User);
+
+export type UserType = ReturnModelType<typeof User>;
 
 export default UserModel;
