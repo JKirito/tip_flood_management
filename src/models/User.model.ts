@@ -29,10 +29,22 @@ class User {
   public country!: string;
 
   @prop({ default: false })
-  public isAdmin?: boolean;
-
-  @prop({ default: false })
   public isSubscriber?: boolean;
+
+  public static async toggleSubscribe(
+    this: ReturnModelType<typeof User>,
+    userId: string
+  ): Promise<boolean> {
+    const user = await this.findById(userId);
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    user.isSubscriber = !user.isSubscriber;
+    await user.save();
+
+    return user.isSubscriber;
+  }
 }
 
 const UserModel = getModelForClass(User);

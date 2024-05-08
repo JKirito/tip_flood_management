@@ -70,4 +70,10 @@ export const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-// console.log('Hello from user controller');
+export const toggleSubscribeStatus = async (req: Request, res: Response) => {
+  try {
+    const toggleStatus = await UserModel.toggleSubscribe(req.params.id);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
