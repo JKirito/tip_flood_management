@@ -5,6 +5,7 @@ import UserRouter from '@routes/user.routes';
 import AlertRouter from '@routes/alert.routes';
 import mlRouter from '@routes/ml.routes';
 import uploadRouter from '@routes/upload.routes';
+import evacuationRouter from '@routes/evacuation.routes';
 
 // This is the place where Express application set up
 // Create an instance of express
@@ -24,5 +25,6 @@ app.use('/users', UserRouter);
 app.use('/alerts', AlertRouter);
 app.use('/ml', mlRouter);
 app.use('/upload', uploadRouter);
+app.use('/evacuation', evacuationRouter);
 
 export default app;
