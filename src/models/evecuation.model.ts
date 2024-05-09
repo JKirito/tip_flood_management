@@ -14,7 +14,7 @@ class EvacuationZone {
   public members: number;
 
   @prop({ required: true })
-  public latiude: number;
+  public latitude: number;
 
   @prop({ required: true })
   public longitude: number;
