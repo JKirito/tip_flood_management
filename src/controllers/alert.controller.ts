@@ -15,7 +15,7 @@ export const createAlert = async (req: Request, res: Response) => {
 
 export const getAlerts = async (req: Request, res: Response) => {
   try {
-    const alerts = await AlertModel.find();
+    const alerts = await AlertModel.find().sort({ timestamp: 1 });
     res.json(alerts);
   } catch (error) {
     console.error('Error getting alerts:', error);
