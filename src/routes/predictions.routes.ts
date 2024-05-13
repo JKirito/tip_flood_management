@@ -6,7 +6,7 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/", createPredictions);
-router.get("/", getPredictions);
+router.post("/createPredictions", createPredictions);
+router.get("/getPredictions", getPredictions);
 
 export default router;

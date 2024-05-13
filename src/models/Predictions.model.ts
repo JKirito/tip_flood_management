@@ -5,6 +5,7 @@ import {
   Severity,
   modelOptions,
 } from "@typegoose/typegoose";
+import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 
 @modelOptions({ options: { allowMixed: Severity.ALLOW } })
 class Predictions {
@@ -37,6 +38,9 @@ class Predictions {
 
   @prop({ required: true })
   public previousFloodHistory: number;
+
+  @prop({ required: true, default: Date.now})
+  public createdAt: Date;
 
   @prop({ required: true })
   public predicted: number;

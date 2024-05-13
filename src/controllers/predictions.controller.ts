@@ -15,7 +15,7 @@ export const createPredictions = async (req: Request, res: Response) => {
 
 export const getPredictions = async (req: Request, res: Response) => {
   try {
-    const predictions = await PredictionsModel.find();
+    const predictions = await PredictionsModel.find().sort({ createdAt: 1 }); 
     res.json(predictions);
   } catch (error) {
     console.error("Error getting predictions:", error);
