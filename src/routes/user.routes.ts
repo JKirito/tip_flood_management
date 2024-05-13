@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express';
 import {
   createUser,
   deleteUser,
-  getUserById,
+  getUserByEmail,
   getUsers,
   updateUser,
 } from '@controllers/user.controller';
@@ -12,13 +12,12 @@ const router = express.Router();
 
 router.get('/', getUsers);
 
-router.get('/:id', getUserById);
-
+router.get('/:email', getUserByEmail);
 
 router.post('/', createUser);
 
-router.put('/:id', updateUser);
+router.put('/:email', updateUser);
 
-router.delete('/:id', deleteUser);
+router.delete('/:email', deleteUser);
 
 export default router;
