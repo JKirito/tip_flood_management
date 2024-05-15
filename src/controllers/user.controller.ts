@@ -25,9 +25,30 @@ export const getUserByEmail = async (req: Request, res: Response) => {
   }
 };
 
+export const getUserByName = async (req: Request, res: Response) => {
+  try {
+    const user = await UserModel.findOne({
+      name: req.params.username,
+    });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const newUser = new UserModel(req.body as UserType);
+    console.log('Trying to create a user');
+    const udpdatedFields = { ...req.body, username: req.body.name };
+    if (req.body.adminPassword && req.body.adminPassword === 'admin') {
+      udpdatedFields.role = 'admin';
+    } else {
+      udpdatedFields.role = 'user';
+    }
+    const newUser = new UserModel(udpdatedFields as UserType);
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
   } catch (error) {
@@ -56,6 +77,20 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
+export const updateUserStatus = async (req: Request, res: Response) => {
+  try {
+    const { email, newStatus } = req.body as {
+      email: string;
+      newStatus: 'active' | 'blocked' | 'pending';
+    };
+    await UserModel.changeStatus(email, newStatus);
+    console.log('User status updated successfully');
+    res.sendStatus(200);
+  } catch (error) {
+    console.error('Error updating user status:', error);
+  }
+};
+
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     const user = await UserModel.findOneAndDelete({
@@ -65,14 +100,6 @@ export const deleteUser = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'User not found' });
     }
     res.status(200).json({ message: 'User deleted' });
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
-
-export const toggleSubscribeStatus = async (req: Request, res: Response) => {
-  try {
-    const toggleStatus = await UserModel.toggleSubscribe(req.params.id);
   } catch (error) {
     res.status(500).send(error);
   }

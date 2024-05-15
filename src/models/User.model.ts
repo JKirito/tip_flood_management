@@ -29,21 +29,33 @@ class User {
   public country!: string;
 
   @prop({ default: false })
-  public isSubscriber?: boolean;
+  public role: 'admin' | 'user';
 
-  public static async toggleSubscribe(
+  @prop({ required: true })
+  public password!: string;
+
+  @prop({ required: true, default: 'pending' })
+  public status!: 'active' | 'blocked' | 'pending';
+
+  @prop({ required: true })
+  public latitude: string;
+
+  @prop({ required: true })
+  public longitude: string;
+
+  // Static function to change user status
+  public static async changeStatus(
     this: ReturnModelType<typeof User>,
-    userId: string
-  ): Promise<boolean> {
-    const user = await this.findById(userId);
-    if (!user) {
+    email: string,
+    newStatus: 'active' | 'blocked' | 'pending'
+  ): Promise<void> {
+    const user = await this.findOne({ email: email });
+    if (user) {
+      user.status = newStatus;
+      await user.save();
+    } else {
       throw new Error('User not found');
     }
-
-    user.isSubscriber = !user.isSubscriber;
-    await user.save();
-
-    return user.isSubscriber;
   }
 }
 
