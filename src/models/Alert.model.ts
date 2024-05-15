@@ -4,7 +4,9 @@ import {
   getModelForClass,
   Severity,
   modelOptions,
+  Ref,
 } from '@typegoose/typegoose';
+import ProximityZone, { ProximityZoneModel } from './proximityzone.model';
 
 @modelOptions({ options: { allowMixed: Severity.ALLOW } })
 class Alert {
@@ -29,6 +31,9 @@ class Alert {
 
   @prop({ default: Date.now })
   public timestamp!: Date; // Time the alert was generated
+
+  @prop({ ref: () => ProximityZone, required: true })
+  public proximityZone!: Ref<ProximityZone>;
 }
 
 // Create the Typegoose Model

@@ -50,3 +50,19 @@ export const deleteAlertById = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Error deleting alert' });
   }
 };
+
+export const getAlertByProximityZone = async (req: Request, res: Response) => {
+  try {
+    const { proximityZoneId } = req.params;
+    console.log('proximityZoneId:', proximityZoneId);
+    const alerts = await AlertModel.find({ proximityZone: proximityZoneId });
+
+    // const alerts = await AlertModel.aggregate([
+    //   { $match: { proximityZone: proximityZoneId } },
+    // ]);
+
+    res.status(200).json(alerts);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};

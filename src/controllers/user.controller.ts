@@ -1,6 +1,7 @@
 //responsible for handling incoming HTTP requests and returning responses to the client
 import { Request, Response } from 'express';
 import UserModel, { UserType } from '@models/User.model';
+import { ProximityZoneModel } from '@models/proximityzone.model';
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -100,6 +101,28 @@ export const deleteUser = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'User not found' });
     }
     res.status(200).json({ message: 'User deleted' });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+export const attachToProximityZone = async (req: Request, res: Response) => {
+  try {
+    const { name, proximityZoneId } = req.body as {
+      name: string;
+      proximityZoneId: string;
+    };
+    const user = await UserModel.findOne({ name: name });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    const proximityZone = await ProximityZoneModel.findById(proximityZoneId);
+    if (!proximityZone) {
+      return res.status(404).json({ message: 'Proximity zone not found' });
+    }
+    user.proximityZone = proximityZone._id;
+    await user.save();
+    res.status(200).json({user, proximityZone});
   } catch (error) {
     res.status(500).send(error);
   }

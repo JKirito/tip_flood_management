@@ -1,4 +1,4 @@
-import ProximityZoneModel from '@models/proximityzone.model';
+import { ProximityZoneModel } from '@models/proximityzone.model';
 import { Request, Response } from 'express';
 
 export const getProximityZones = async (req: Request, res: Response) => {

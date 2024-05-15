@@ -1,5 +1,10 @@
-import { ReturnModelType, getModelForClass, prop } from '@typegoose/typegoose';
-
+import {
+  ReturnModelType,
+  getModelForClass,
+  prop,
+  Ref,
+} from '@typegoose/typegoose';
+import ProximityZone, { ProximityZoneModel } from './proximityzone.model';
 class User {
   @prop({ required: true })
   public name!: string;
@@ -42,6 +47,9 @@ class User {
 
   @prop({ required: true })
   public longitude: string;
+
+  @prop({ ref: () => ProximityZone, required: false })
+  public proximityZone!: Ref<ProximityZone>;
 
   // Static function to change user status
   public static async changeStatus(
