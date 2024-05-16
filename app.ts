@@ -8,6 +8,7 @@ import uploadRouter from '@routes/upload.routes';
 import evacuationRouter from '@routes/evacuation.routes';
 import PredictionRouter from '@routes/predictions.routes';
 import ProximityZoneRouter from '@routes/proximityzone.routes';
+import floodzoneRouter from '@routes/floodzone.route';
 import cors from 'cors';
 
 // This is the place where Express application set up
@@ -34,5 +35,6 @@ app.use('/upload', uploadRouter);
 app.use('/evacuation', evacuationRouter);
 app.use('/predictions', PredictionRouter);
 app.use('/proximityzone', ProximityZoneRouter);
+app.use('/floodzone', floodzoneRouter);
 
 export default app;
