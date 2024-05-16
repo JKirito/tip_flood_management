@@ -14,6 +14,6 @@ class ProximityZone {
   public longitude!: number;
 }
 
-const ProximityZoneModel = getModelForClass(ProximityZone);
+export const ProximityZoneModel = getModelForClass(ProximityZone);
 
-export default ProximityZoneModel;
+export default ProximityZone;

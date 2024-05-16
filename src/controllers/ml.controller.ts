@@ -35,7 +35,7 @@ export const run_decision_tree = async (req: Request, res: Response) => {
       res.json(response.data);
     })
     .catch((error) => {
-      res.status(500).json({ message: 'Error running logistic regression' });
+      res.status(500).json({ message: 'Error running decision tree' });
     });
 };
 
@@ -62,7 +62,7 @@ export const run_svm = async (req: Request, res: Response) => {
       res.json(response.data);
     })
     .catch((error) => {
-      res.status(500).json({ message: 'Error running logistic regression' });
+      res.status(500).json({ message: 'Error running SVM alogrithm' });
     });
 };
 
