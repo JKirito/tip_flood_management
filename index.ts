@@ -1,7 +1,7 @@
-import app from './app';
 import mongoose from 'mongoose';
 import config from '@config/config';
 import { GridFSBucket } from 'mongodb';
+import app from './app';
 
 // This is where the application server started
 let gfsBucket: any = null;
@@ -10,7 +10,7 @@ mongoose
   .connect(config.dbUri)
   .then(() => {
     console.log('Database connected successfully.');
-    const connection = mongoose.connection; // Use existing connection
+    const { connection } = mongoose; // Use existing connection
     connection.once('open', () => {
       gfsBucket = new GridFSBucket(connection.db);
     });
