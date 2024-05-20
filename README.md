@@ -23,33 +23,36 @@ This project is the Node.js backend that acts as a middleware between the Python
 ### Installation
 
 1. **Clone the repository**
-   \`\`\`sh
+
+   ```sh
    git clone https://github.com/yourusername/flood-management-middleware.git
    cd flood-management-middleware
-   \`\`\`
+   ```
 
 2. **Install dependencies**
-   \`\`\`sh
+
+   ```sh
    npm install
 
    # or
 
    yarn install
-   \`\`\`
+   ```
 
-3. **Create a \`.env\` file**
-   \`\`\`sh
+3. **Create a `.env` file**
+
+   ```sh
    MONGO_URI=mongodb://localhost:27017/floodManagement
    PYTHON_BACKEND_URL=http://127.0.0.1:5000
    PORT=3001
-   \`\`\`
+   ```
 
 4. **Run the application**
-   \`\`\`sh
+   ```sh
    npm start
    # or
    yarn start
-   \`\`\`
+   ```
 
 The server will start at \`http://localhost:3001/\`.
 
