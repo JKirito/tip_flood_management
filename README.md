@@ -135,3 +135,19 @@ Please fork the repository and submit pull requests for any enhancements or bug 
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Naming Convention
+
+- **File Naming:** Use `camelCase` for all file names (e.g., `myScript.js`, `userProfile.ts`).
+  
+- **Constants:** Use `FULL_CAPITAL_SNAKE_CASE` for constant variables (e.g., `MAX_RETRIES`, `DEFAULT_PORT`).
+
+- **Interfaces:** Use `I` prefix with PascalCase for interface typescript classes (e.g., `IUser`, `IProductService`).
+
+### Examples:
+- `myScript.js`
+- `userProfile.ts`
+- `MAX_RETRIES`
+- `IUser`, `IProductService`
+
+Adopting these naming conventions ensures consistency and improves code readability across the project.
